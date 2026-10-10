@@ -13,7 +13,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->unique()->constrained('users')->cascadeOnDelete();
             $table->string('nisn')->unique();
-            $table->string('school_name');
+            $table->string('school_name')->nullable();
             $table->string('major');
             $table->text('address')->nullable();
             $table->timestamps();
