@@ -1,4 +1,3 @@
-```php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -14,7 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id')->unique()->constrained('users')->cascadeOnDelete();
             $table->string('nisn')->unique();
             $table->string('school_name')->nullable();
-            $table->string('major');
+            $table->foreignId('major_id')->constrained('majors')->restrictOnDelete();
             $table->text('address')->nullable();
             $table->timestamps();
         });
