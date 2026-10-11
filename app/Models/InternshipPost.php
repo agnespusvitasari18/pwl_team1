@@ -13,7 +13,7 @@ class InternshipPost extends Model
     protected $fillable = [
         'company_id',
         'title',
-        'major_required',
+        'major_id',
         'description',
         'quota',
         'deadline',
@@ -32,6 +32,11 @@ class InternshipPost extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(CompanyProfile::class, 'company_id');
+    }
+
+    public function major(): BelongsTo
+    {
+        return $this->belongsTo(Major::class);
     }
 
     public function applications(): HasMany
@@ -54,9 +59,9 @@ class InternshipPost extends Model
         return $query->whereDate('deadline', '>=', today());
     }
 
-    public function scopeForMajor(Builder $query, string $major): Builder
+    public function scopeForMajor(Builder $query, int $majorId): Builder
     {
-        return $query->where('major_required', $major);
+        return $query->where('major_id', $majorId);
     }
 
     // ---------- Helper ----------

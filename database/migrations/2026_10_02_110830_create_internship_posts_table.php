@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,8 +11,8 @@ return new class extends Migration
         Schema::create('internship_posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained('company_profiles')->cascadeOnDelete();
+            $table->foreignId('major_id')->constrained('majors')->restrictOnDelete();
             $table->string('title');
-            $table->string('major_required');
             $table->text('description');
             $table->unsignedInteger('quota');
             $table->date('deadline');
