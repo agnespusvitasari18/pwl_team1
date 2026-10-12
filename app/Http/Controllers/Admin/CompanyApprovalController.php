@@ -32,9 +32,20 @@ class CompanyApprovalController extends Controller
         return $this->setStatus($user, User::STATUS_APPROVED, 'Perusahaan disetujui.');
     }
 
-    public function reject(User $user): RedirectResponse
+    public function reject(Request $request, User $user): RedirectResponse
     {
-        return $this->setStatus($user, User::STATUS_REJECTED, 'Perusahaan ditolak.');
+        abort_unless($user->isCompany(), 404);
+
+        $user->approval_status = User::STATUS_REJECTED;
+        $user->save();
+
+        if ($user->companyProfile && $request->filled('rejection_reason')) {
+            $user->companyProfile->update([
+                'rejection_reason' => $request->input('rejection_reason'),
+            ]);
+        }
+
+        return back()->with('success', 'Perusahaan ditolak.');
     }
 
     private function setStatus(User $user, string $status, string $message): RedirectResponse

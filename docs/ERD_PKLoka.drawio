@@ -1,0 +1,234 @@
+<mxfile host="app.diagrams.net" modified="2026-10-12T07:39:00.000Z" agent="Antigravity" version="24.0.0">
+  <diagram name="ERD PKLoka" id="erd-pkloka">
+    <mxGraphModel dx="1422" dy="894" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;ENTITY RELATIONSHIP DIAGRAM (ERD) - PKLOKA&lt;/font&gt;&lt;/b&gt;&lt;br&gt;Sistem Informasi Penempatan &amp;amp; Praktik Kerja Lapangan (PKL) Berbasis Laravel &amp;amp; PostgreSQL" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="800" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- USERS TABLE -->
+        <mxCell id="tbl_users" value="users" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#3B82F6;fontColor=#ffffff;strokeColor=#1D4ED8;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="280" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="u_f1" value="+ id: BIGINT [PK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#B91C1C;" vertex="1" parent="tbl_users">
+          <mxGeometry y="30" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="u_f2" value="  name: VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_users">
+          <mxGeometry y="56" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="u_f3" value="+ email: VARCHAR(255) [UK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#047857;" vertex="1" parent="tbl_users">
+          <mxGeometry y="82" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="u_f4" value="  email_verified_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_users">
+          <mxGeometry y="108" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="u_f5" value="  password: VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_users">
+          <mxGeometry y="134" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="u_f6" value="  role: ENUM(admin,student,company)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_users">
+          <mxGeometry y="160" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="u_f7" value="  approval_status: ENUM(pending,appr,rej)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_users">
+          <mxGeometry y="186" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="u_f8" value="  remember_token: VARCHAR(100)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_users">
+          <mxGeometry y="212" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="u_f9" value="  created_at / updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_users">
+          <mxGeometry y="238" width="280" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- MAJORS TABLE -->
+        <mxCell id="tbl_majors" value="majors" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#10B981;fontColor=#ffffff;strokeColor=#047857;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="660" y="120" width="260" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="m_f1" value="+ id: BIGINT [PK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#B91C1C;" vertex="1" parent="tbl_majors">
+          <mxGeometry y="30" width="260" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m_f2" value="+ name: VARCHAR(255) [UK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#047857;" vertex="1" parent="tbl_majors">
+          <mxGeometry y="56" width="260" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="m_f3" value="  created_at / updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_majors">
+          <mxGeometry y="82" width="260" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- COMPANY_PROFILES TABLE -->
+        <mxCell id="tbl_comp" value="company_profiles" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#F59E0B;fontColor=#ffffff;strokeColor=#B45309;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="120" width="280" height="238" as="geometry" />
+        </mxCell>
+        <mxCell id="cp_f1" value="+ id: BIGINT [PK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#B91C1C;" vertex="1" parent="tbl_comp">
+          <mxGeometry y="30" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cp_f2" value="# user_id: BIGINT [FK, UK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#1D4ED8;" vertex="1" parent="tbl_comp">
+          <mxGeometry y="56" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cp_f3" value="  company_name: VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_comp">
+          <mxGeometry y="82" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cp_f4" value="  description: TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_comp">
+          <mxGeometry y="108" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cp_f5" value="  address: VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_comp">
+          <mxGeometry y="134" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cp_f6" value="  contact: VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_comp">
+          <mxGeometry y="160" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cp_f7" value="  rejection_reason: TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_comp">
+          <mxGeometry y="186" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="cp_f8" value="  created_at / updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_comp">
+          <mxGeometry y="212" width="280" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- STUDENT_PROFILES TABLE -->
+        <mxCell id="tbl_stud" value="student_profiles" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#8B5CF6;fontColor=#ffffff;strokeColor=#6D28D9;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="80" y="550" width="280" height="238" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_f1" value="+ id: BIGINT [PK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#B91C1C;" vertex="1" parent="tbl_stud">
+          <mxGeometry y="30" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_f2" value="# user_id: BIGINT [FK, UK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#1D4ED8;" vertex="1" parent="tbl_stud">
+          <mxGeometry y="56" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_f3" value="+ nisn: VARCHAR(20) [UK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#047857;" vertex="1" parent="tbl_stud">
+          <mxGeometry y="82" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_f4" value="  school_name: VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_stud">
+          <mxGeometry y="108" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_f5" value="# major_id: BIGINT [FK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#1D4ED8;" vertex="1" parent="tbl_stud">
+          <mxGeometry y="134" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_f6" value="  address: TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_stud">
+          <mxGeometry y="160" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="sp_f7" value="  created_at / updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_stud">
+          <mxGeometry y="186" width="280" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- INTERNSHIP_POSTS TABLE -->
+        <mxCell id="tbl_posts" value="internship_posts" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#EC4899;fontColor=#ffffff;strokeColor=#BE185D;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="530" width="280" height="264" as="geometry" />
+        </mxCell>
+        <mxCell id="ip_f1" value="+ id: BIGINT [PK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#B91C1C;" vertex="1" parent="tbl_posts">
+          <mxGeometry y="30" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ip_f2" value="# company_id: BIGINT [FK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#1D4ED8;" vertex="1" parent="tbl_posts">
+          <mxGeometry y="56" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ip_f3" value="# major_id: BIGINT [FK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#1D4ED8;" vertex="1" parent="tbl_posts">
+          <mxGeometry y="82" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ip_f4" value="  title: VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_posts">
+          <mxGeometry y="108" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ip_f5" value="  description: TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_posts">
+          <mxGeometry y="134" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ip_f6" value="  quota: INT UNSIGNED" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_posts">
+          <mxGeometry y="160" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ip_f7" value="  deadline: DATE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_posts">
+          <mxGeometry y="186" width="280" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ip_f8" value="  created_at / updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_posts">
+          <mxGeometry y="212" width="280" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- APPLICATIONS TABLE -->
+        <mxCell id="tbl_app" value="applications" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#0EA5E9;fontColor=#ffffff;strokeColor=#0284C7;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="640" y="650" width="300" height="316" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f1" value="+ id: BIGINT [PK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#B91C1C;" vertex="1" parent="tbl_app">
+          <mxGeometry y="30" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f2" value="# student_id: BIGINT [FK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#1D4ED8;" vertex="1" parent="tbl_app">
+          <mxGeometry y="56" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f3" value="# post_id: BIGINT [FK]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#1D4ED8;" vertex="1" parent="tbl_app">
+          <mxGeometry y="82" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f4" value="  application_date: DATE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_app">
+          <mxGeometry y="108" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f5" value="  status: ENUM(pending,acc,rej)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_app">
+          <mxGeometry y="134" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f6" value="  resume_file: VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_app">
+          <mxGeometry y="160" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f7" value="  portfolio_url: VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_app">
+          <mxGeometry y="186" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f8" value="  notes: TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_app">
+          <mxGeometry y="212" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f9" value="  rejection_reason: TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;" vertex="1" parent="tbl_app">
+          <mxGeometry y="238" width="300" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="ap_f10" value="+ UQ: [student_id, post_id]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=8;fontStyle=1;fontColor=#047857;" vertex="1" parent="tbl_app">
+          <mxGeometry y="264" width="300" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- RELATIONSHIPS -->
+        <!-- 1. users -> student_profiles (1:1) -->
+        <mxCell id="rel_u_sp" value="1 : 1 (user_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#64748B;fontColor=#334155;" edge="1" parent="1" source="tbl_users" target="tbl_stud">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 2. users -> company_profiles (1:1) -->
+        <mxCell id="rel_u_cp" value="1 : 1 (user_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.2;entryX=0;entryY=0.2;strokeWidth=2;strokeColor=#64748B;fontColor=#334155;" edge="1" parent="1" source="tbl_users" target="tbl_comp">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="178" />
+              <mxPoint x="500" y="80" />
+              <mxPoint x="1100" y="80" />
+              <mxPoint x="1100" y="168" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 3. majors -> student_profiles (1:N) -->
+        <mxCell id="rel_m_sp" value="1 : N (major_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.8;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#10B981;fontColor=#047857;" edge="1" parent="1" source="tbl_majors" target="tbl_stud">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="227" />
+              <mxPoint x="520" y="669" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 4. majors -> internship_posts (1:N) -->
+        <mxCell id="rel_m_ip" value="1 : N (major_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.8;entryX=0;entryY=0.4;strokeWidth=2;strokeColor=#10B981;fontColor=#047857;" edge="1" parent="1" source="tbl_majors" target="tbl_posts">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1060" y="227" />
+              <mxPoint x="1060" y="636" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 5. company_profiles -> internship_posts (1:N) -->
+        <mxCell id="rel_cp_ip" value="1 : N (company_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;strokeWidth=2;strokeColor=#F59E0B;fontColor=#B45309;" edge="1" parent="1" source="tbl_comp" target="tbl_posts">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 6. student_profiles -> applications (1:N) -->
+        <mxCell id="rel_sp_ap" value="1 : N (student_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.8;entryX=0;entryY=0.5;strokeWidth=2;strokeColor=#8B5CF6;fontColor=#6D28D9;" edge="1" parent="1" source="tbl_stud" target="tbl_app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 7. internship_posts -> applications (1:N) -->
+        <mxCell id="rel_ip_ap" value="1 : N (post_id)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.8;entryX=1;entryY=0.5;strokeWidth=2;strokeColor=#EC4899;fontColor=#BE185D;" edge="1" parent="1" source="tbl_posts" target="tbl_app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

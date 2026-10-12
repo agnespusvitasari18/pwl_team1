@@ -17,6 +17,10 @@ class Application extends Model
         'post_id',
         'application_date',
         'status',
+        'resume_file',
+        'portfolio_url',
+        'notes',
+        'rejection_reason',
     ];
 
     protected function casts(): array

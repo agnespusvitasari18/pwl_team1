@@ -32,6 +32,10 @@ class ApplicationController extends Controller
         $post->load('company.user');
         abort_unless($post->company->user->isApproved(), 404);
 
+        if ($post->major_id !== $student->major_id) {
+            return back()->with('error', 'Lowongan ini tidak sesuai dengan jurusan Anda.');
+        }
+
         if (! $post->isOpen()) {
             return back()->with('error', 'Batas pendaftaran lowongan ini sudah lewat.');
         }
@@ -55,6 +59,9 @@ class ApplicationController extends Controller
                 'post_id' => $post->id,
                 'application_date' => today(),
                 'status' => Application::STATUS_PENDING,
+                'resume_file' => $request->input('resume_file'),
+                'portfolio_url' => $request->input('portfolio_url'),
+                'notes' => $request->input('notes'),
             ]);
         } catch (UniqueConstraintViolationException) {
             return back()->with('error', 'Anda sudah mendaftar pada lowongan ini.');

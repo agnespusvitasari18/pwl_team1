@@ -68,7 +68,10 @@ class ApplicantController extends Controller
             return back()->with('error', 'Pendaftaran ini sudah diproses dan tidak dapat diubah.');
         }
 
-        $application->update(['status' => Application::STATUS_REJECTED]);
+        $application->update([
+            'status' => Application::STATUS_REJECTED,
+            'rejection_reason' => $request->input('rejection_reason'),
+        ]);
 
         return back()->with('success', 'Pendaftaran ditolak.');
     }

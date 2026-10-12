@@ -80,6 +80,10 @@ class InternshipPostController extends Controller
     {
         $this->authorizePost($request, $post);
 
+        if ($post->acceptedCount() > 0) {
+            return back()->with('error', 'Lowongan tidak dapat dihapus karena sudah memiliki siswa yang diterima.');
+        }
+
         $post->delete(); // pendaftaran terkait ikut terhapus (cascade)
 
         return redirect()->route('company.posts.index')->with('success', 'Lowongan dihapus.');
