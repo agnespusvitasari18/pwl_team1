@@ -16,23 +16,47 @@ class InternshipPostController extends Controller
     {
         $student = $this->student($request);
 
-        // Bawaan: lowongan sesuai jurusan siswa. Pilih "Semua" di filter (major_id kosong) untuk semua jurusan.
-        $majorId = $request->has('major_id') ? $request->input('major_id') : $student->major_id;
+        // Bawaan: lowongan sesuai jurusan siswa jika tidak ada parameter khusus.
+        // Jika parameter major_id = 'all' atau '', tampilkan semua.
+        $requestedMajor = $request->query('major_id');
+        $selectedMajor = null;
+
+        if ($request->has('major_id')) {
+            $selectedMajor = ($requestedMajor === 'all' || $requestedMajor === '') ? null : (int) $requestedMajor;
+        } else {
+            $selectedMajor = $student->major_id;
+        }
+
+        $search = trim((string) $request->input('q', ''));
 
         $posts = InternshipPost::query()
             ->open()
             ->whereHas('company.user', fn ($q) => $q->where('approval_status', User::STATUS_APPROVED))
-            ->when($majorId, fn ($q) => $q->forMajor((int) $majorId))
+            ->when($selectedMajor, fn ($q) => $q->forMajor($selectedMajor))
+            ->when($search !== '', function ($q) use ($search) {
+                $pattern = '%'.mb_strtolower($search).'%';
+                $q->where(function ($sub) use ($pattern) {
+                    $sub->whereRaw('LOWER(title) like ?', [$pattern])
+                        ->orWhereRaw('LOWER(description) like ?', [$pattern])
+                        ->orWhereHas('company', fn ($c) => $c->whereRaw('LOWER(company_name) like ?', [$pattern]));
+                });
+            })
             ->with(['company', 'major'])
+            ->withCount(['applications as accepted_count' => fn ($q) => $q->accepted()])
             ->latest()
             ->paginate(9)
             ->withQueryString();
 
+        $isAccepted = $student->applications()->accepted()->exists();
+
         return view('student.posts.index', [
+            'student' => $student,
             'posts' => $posts,
             'majors' => Major::orderBy('name')->get(),
-            'selectedMajor' => $majorId,
+            'selectedMajor' => $selectedMajor,
+            'search' => $search,
             'appliedPostIds' => $student->applications()->pluck('post_id')->all(),
+            'isAccepted' => $isAccepted,
         ]);
     }
 
@@ -45,8 +69,10 @@ class InternshipPostController extends Controller
 
         return view('student.posts.show', [
             'post' => $post,
+            'student' => $student,
             'hasApplied' => $student->hasApplied($post),
             'remainingQuota' => $post->remainingQuota(),
+            'isAccepted' => $student->applications()->accepted()->exists(),
         ]);
     }
 

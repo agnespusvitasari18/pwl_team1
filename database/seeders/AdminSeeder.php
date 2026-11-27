@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
         User::firstOrCreate(
             ['email' => 'admin@pkloka.test'],
             [
-                'name' => 'Admin Sekolah',
+                'name' => 'Admin '.config('pkloka.school_name'),
                 'password' => 'password',
                 'role' => User::ROLE_ADMIN,
                 'approval_status' => User::STATUS_APPROVED,

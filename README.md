@@ -1,59 +1,208 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+
+# 🎓 PKLoka
+### Sistem Informasi Praktik Kerja Lapangan (PKL) Berbasis Web Menggunakan Laravel
+
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.3%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2B-336791?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+
+<br>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <b>PKLoka</b> adalah platform terpadu yang memfasilitasi proses penyelenggaraan Praktik Kerja Lapangan (PKL) bagi siswa SMK dengan menghubungkan tiga pihak: <b>Siswa</b>, <b>Mitra Industri (Perusahaan)</b>, dan <b>Pihak Sekolah (Admin / Guru)</b>.
 </p>
 
-## About Laravel
+</div>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 👥 Tim Pengembang (Kelompok 1)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Proyek ini disusun untuk memenuhi tugas besar mata kuliah **Pemrograman Web Lanjut**:
 
-## Learning Laravel
+* **Dosen Pengampu:**
+  1. **M. Iqbal Parabi, S.Si., M.T.**
+  2. **Muhammad Ikhsan, S.Kom., M.Cs.**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* **Anggota Kelompok:**
+  | No | Nama | NPM | Peran Utama |
+  |:--:|---|:--:|---|
+  | 1 | **Agnes Puspita Sari** | 2417052022 | Ketua Tim, Arsitektur Sistem, Autentikasi & RBAC |
+  | 2 | **M. Altaf Rabbani** | 2457052010 | Modul Admin Sekolah (Persetujuan Perusahaan & CRUD Siswa) |
+  | 3 | **Salsabila Eka Putri** | 2417052015 | Modul Siswa (Katalog Lowongan, Pendaftaran & Tracking) |
+  | 4 | **Michela Irena Hutama** | 2417052009 | Modul Perusahaan (Manajemen Lowongan & Seleksi Pelamar) |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Jurusan Ilmu Komputer · Program Studi S1 Sistem Informasi**  
+**Fakultas Matematika dan Ilmu Pengetahuan Alam · Universitas Lampung**  
+**2026**
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📌 Fitur Utama
 
-### Premium Partners
+Sistem menerapkan **Role-Based Access Control (RBAC)** dengan 3 tingkatan hak akses yang terisolasi ketat pada level middleware:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```
+┌────────────────────────────────────────────────────────┐
+│                       SISTEM PKLOKA                    │
+├─────────────────┬───────────────────┬──────────────────┤
+│ 👨‍🏫 Admin Sekolah│ 🏢 Mitra Industri  │ 👤 Siswa         │
+├─────────────────┼───────────────────┼──────────────────┤
+│ • Validasi Mitra│ • CRUD Lowongan   │ • Filter Jurusan │
+│ • CRUD Siswa    │ • Review Pelamar  │ • Lamar Online   │
+│ • Audit Lamaran │ • Terima/Tolak    │ • Tracking Status│
+│ • Rekap PKL     │ • Profil Instansi │ • Profil Diri    │
+└─────────────────┴───────────────────┴──────────────────┘
+```
 
-## Contributing
+### 1. 👨‍🏫 Pihak Sekolah (Admin / Guru)
+- **Verifikasi Mitra Industri (*Company Approval*):** Menyaring pendaftaran perusahaan untuk mencegah lowongan fiktif sebelum dapat membuka lowongan.
+- **Manajemen Siswa (*CRUD Student*):** Mendaftarkan akun siswa baru, mengelola data NISN, sekolah, jurusan, serta memperbarui/menghapus akun.
+- **Monitoring Agregat:** Memantau seluruh lowongan yang diterbitkan dan rekap status seluruh lamaran siswa secara terpusat.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. 🏢 Mitra Industri (Perusahaan)
+- **Registrasi & Profil Perusahaan:** Mendaftarkan institusi secara mandiri serta mengelola profil, alamat, dan narahubung resmi.
+- **Manajemen Lowongan (*CRUD Internship Posts*):** Membuat, mengedit, atau menutup lowongan PKL dengan kriteria jurusan (*major*), kuota siswa, dan batas waktu (*deadline*).
+- **Proses Seleksi Pelamar:** Memeriksa data siswa pelamar, memutuskan penerimaan (*accept*) atau penolakan (*reject*).
 
-## Code of Conduct
+### 3. 👤 Siswa SMA/SMK (Student)
+- **Katalog Lowongan Tertarget:** Menampilkan lowongan yang relevan dan sesuai dengan kompetensi keahlian/jurusan siswa.
+- **Pengajuan Pendaftaran (*One-Click Apply*):** Melamar lowongan PKL secara daring dan aman dari pendaftaran ganda.
+- **Pelacakan Status Real-Time:** Memantau perkembangan status lamaran (*Menunggu*, *Diterima*, atau *Ditolak*).
+- **Proteksi Penempatan Eksklusif:** Ketika siswa diterima di salah satu lowongan, sistem secara otomatis mengunci status siswa dan menggugurkan lamaran lain yang masih *pending*.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 🚀 Panduan Instalasi & Menjalankan Proyek
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 1. Prasyarat Lingkungan
+- PHP `>= 8.2` (Rekomendasi PHP 8.3)
+- Composer `>= 2.x`
+- Node.js `>= 18.x` & npm
+- PostgreSQL (versi 15+ / 16+) atau pgAdmin
 
-## License
+### 2. Langkah Instalasi
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+# 1. Masuk ke direktori proyek
+cd c:\laragon\www\pwl_team1
+
+# 2. Pasang dependensi PHP dan Node.js
+composer install
+npm install
+
+# 3. Siapkan berkas environment
+cp .env.example .env
+php artisan key:generate
+```
+
+### 3. Konfigurasi Database (.env)
+Buka berkas `.env` dan sesuaikan koneksi database PostgreSQL:
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=pkloka
+DB_USERNAME=postgres
+DB_PASSWORD=<password_kamu>
+```
+> *Catatan: Buat database dengan nama `pkloka` di PostgreSQL (via pgAdmin / psql CLI) sebelum menjalankan migrasi.*
+
+### 4. Migrasi, Seeder & Storage Link
+Jalankan migrasi skema tabel beserta data demo Bandar Lampung dan hubungkan direktori penyimpanan publik:
+```bash
+php artisan migrate:fresh --seed
+php artisan storage:link
+```
+
+### 5. Build Aset & Jalankan Server
+```bash
+# Build aset CSS & JS (Tailwind CSS v4 + Vite)
+npm run build
+
+# Jalankan server lokal
+php artisan serve
+```
+Akses sistem melalui peramban: **`http://127.0.0.1:8000`**
+
+---
+
+## 🔑 Akun Uji Coba (Demo Accounts — SMKN 4 Bandar Lampung)
+
+Siswa dapat masuk menggunakan **alamat email** maupun **NISN**. Kata sandi semua akun demo adalah `password`:
+
+| Peran | Email / NISN | Kata Sandi | Keterangan |
+|---|---|---|---|
+| **Admin Sekolah** | `admin@pkloka.test` | `password` | Admin SMKN 4 Bandar Lampung (`/admin`) |
+| **Perusahaan (Disetujui)** | `tech@solusi.test` | `password` | PT Solusi Teknologi Nusantara (Bandar Lampung) |
+| **Perusahaan (Menunggu)** | `info@logistikniaga.test` | `password` | PT Logistik Niaga Lampung (untuk uji verifikasi admin) |
+| **Perusahaan (Ditolak)** | `cs@berkahjaya.test` | `password` | CV Berkah Jaya Mandiri (memiliki alasan penolakan) |
+| **Siswa (PPLG — Diterima)** | `ahmad@siswa.test` / `0061234501` | `password` | Ahmad Fauzan (sudah diterima PKL, terkunci) |
+| **Siswa (DKV — Menunggu)** | `siti@siswa.test` / `0061234502` | `password` | Siti Nurhaliza (lamaran berstatus menunggu) |
+| **Siswa (PPLG — Belum Melamar)** | `bima@siswa.test` / `0061234505` | `password` | Bima Sakti (siap dipakai untuk uji melamar) |
+
+---
+
+## 🧪 Pengujian Otomatis (Automated Testing)
+
+Sistem dilengkapi suite pengujian otomatis untuk memvalidasi alur bisnis, hak akses, penyimpanan CV privat, impor CSV, reset sandi, dan integritas transaksi database:
+
+```bash
+php artisan test
+```
+
+Skenario uji utama pada `tests/Feature/PklokaSystemTest.php`:
+- [x] Akses halaman publik, login (Email & NISN), lupa kata sandi, dan registrasi mitra.
+- [x] Isolasi hak akses antar peran (RBAC) Admin, Perusahaan, Siswa, serta isolasi antar perusahaan & halaman error 403/404.
+- [x] Registrasi perusahaan -> tolak dengan alasan (alasan terlihat perusahaan saat login) -> setujui -> login.
+- [x] Validasi lamaran (jurusan, batas waktu, kuota, larangan dobel, format PDF) & penyimpanan CV di disk privat dengan otorisasi ketat.
+- [x] Seleksi pelamar dengan transaksi DB & `lockForUpdate`: pengecekan kuota, auto-reject lamaran pending lain, dan penguncian status siswa.
+- [x] Alur lupa & atur ulang kata sandi menggunakan email maupun NISN.
+- [x] Fitur Admin: CRUD siswa, reset sandi siswa (kustom & otomatis), impor akun siswa via CSV, dan ekspor rekap penempatan siswa CSV.
+- [x] Analitik dashboard nyata & *smoke test* seluruh halaman di ketiga peran bebas dari galat HTTP 500.
+
+---
+
+## 📂 Struktur Direktori Proyek
+
+```text
+pwl_team1/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Admin/         # Controller wewenang pihak sekolah
+│   │   │   ├── Company/       # Controller wewenang mitra industri
+│   │   │   ├── Student/       # Controller wewenang siswa
+│   │   │   ├── Auth/          # Controller login & registrasi perusahaan
+│   │   │   └── DashboardController.php
+│   │   └── Middleware/
+│   │       └── EnsureRole.php # RBAC middleware penegak hak akses
+│   └── Models/                # User, StudentProfile, CompanyProfile, InternshipPost, Application, Major
+├── database/
+│   ├── migrations/            # Berkas migrasi skema tabel
+│   └── seeders/               # AdminSeeder, MajorSeeder, DemoDataSeeder
+├── resources/
+│   ├── css/app.css            # Tailwind CSS styling
+│   └── views/                 # Blade views modular (admin/, company/, student/, auth/, layouts/)
+├── routes/
+│   └── web.php                # 38 route bisnis aplikasi terproteksi
+└── tests/
+    └── Feature/               # Automated feature tests
+```
+
+---
+
+## 📖 Dokumentasi Lengkap Proyek
+
+Penjelasan arsitektur mendalam, kamus data lengkap, relasi ERD, peta 41 rute, kontrak transisi status, matriks pembagian tugas tim, hingga audit implementasi tersedia pada berkas:
+
+👉 **[Lihat Dokumentasi Lengkap Project (dokumentasi project.md)](dokumentasi%20project.md)**
+
+---
+
+<div align="center">
+  <sub>Dikembangkan oleh Kelompok 1 · Pemrograman Web Lanjut · Universitas Lampung 2026</sub>
+</div>

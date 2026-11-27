@@ -73,6 +73,10 @@ class InternshipPost extends Model
 
     public function acceptedCount(): int
     {
+        if (array_key_exists('accepted_count', $this->attributes)) {
+            return (int) $this->attributes['accepted_count'];
+        }
+
         return $this->applications()->where('status', Application::STATUS_ACCEPTED)->count();
     }
 

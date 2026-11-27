@@ -15,6 +15,7 @@ class StudentProfile extends Model
         'school_name',
         'major_id',
         'address',
+        'phone',
     ];
 
     // ---------- Relasi ----------
@@ -49,5 +50,10 @@ class StudentProfile extends Model
     public function hasApplied(InternshipPost $post): bool
     {
         return $this->applications()->where('post_id', $post->id)->exists();
+    }
+
+    public function isPlaced(): bool
+    {
+        return $this->applications()->accepted()->exists();
     }
 }

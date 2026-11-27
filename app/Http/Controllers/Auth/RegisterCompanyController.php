@@ -29,9 +29,10 @@ class RegisterCompanyController extends Controller
             'description' => ['nullable', 'string'],
             'address' => ['required', 'string', 'max:255'],
             'contact' => ['required', 'string', 'max:255'],
+            'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ]);
 
-        DB::transaction(function () use ($data) {
+        DB::transaction(function () use ($data, $request) {
             // role dan approval_status diisi eksplisit di sini, bukan dari input form.
             $user = new User([
                 'name' => $data['name'],
@@ -48,6 +49,7 @@ class RegisterCompanyController extends Controller
                 'description' => $data['description'] ?? null,
                 'address' => $data['address'],
                 'contact' => $data['contact'],
+                'logo_path' => $request->file('logo')?->store('company-logos', 'public'),
             ]);
         });
 

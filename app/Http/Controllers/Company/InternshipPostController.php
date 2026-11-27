@@ -19,7 +19,10 @@ class InternshipPostController extends Controller
 
         $posts = $company->internshipPosts()
             ->with('major')
-            ->withCount('applications')
+            ->withCount([
+                'applications',
+                'applications as accepted_count' => fn ($q) => $q->accepted(),
+            ])
             ->latest()
             ->paginate(10);
 
@@ -39,7 +42,7 @@ class InternshipPostController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'major_id' => ['required', 'exists:majors,id'],
             'description' => ['required', 'string'],
-            'quota' => ['required', 'integer', 'min:1'],
+            'quota' => ['required', 'integer', 'min:1', 'max:500'],
             'deadline' => ['required', 'date', 'after_or_equal:today'],
         ]);
 
@@ -62,14 +65,22 @@ class InternshipPostController extends Controller
     {
         $this->authorizePost($request, $post);
 
+        $acceptedCount = $post->acceptedCount();
+
         $data = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'major_id' => ['required', 'exists:majors,id'],
             'description' => ['required', 'string'],
             // Kuota tidak boleh lebih kecil dari jumlah siswa yang sudah diterima.
-            'quota' => ['required', 'integer', 'min:'.max(1, $post->acceptedCount())],
+            'quota' => ['required', 'integer', 'min:'.max(1, $acceptedCount), 'max:500'],
             'deadline' => ['required', 'date'],
         ]);
+
+        if ($acceptedCount > 0 && (int) $data['major_id'] !== (int) $post->major_id) {
+            return back()
+                ->withInput()
+                ->withErrors(['major_id' => 'Jurusan target tidak dapat diubah karena sudah ada siswa yang diterima pada lowongan ini.']);
+        }
 
         $post->update($data);
 

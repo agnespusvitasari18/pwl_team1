@@ -16,6 +16,7 @@ class CompanyProfile extends Model
         'address',
         'contact',
         'rejection_reason',
+        'logo_path',
     ];
 
     // ---------- Relasi ----------

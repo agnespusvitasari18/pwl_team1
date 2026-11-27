@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,12 +24,29 @@ class EnsureRole
 
         // Akun yang belum/tidak disetujui admin (mis. perusahaan ditolak saat sedang login) dikeluarkan.
         if (! $user->isApproved()) {
+            $reason = null;
+
+            if ($user->approval_status === User::STATUS_REJECTED) {
+                $user->loadMissing('companyProfile');
+                $reason = $user->companyProfile?->rejection_reason;
+                $message = $reason
+                    ? 'Pendaftaran perusahaan Anda ditolak oleh admin sekolah. Alasan: '.$reason
+                    : 'Pendaftaran akun Anda ditolak oleh admin sekolah.';
+            } else {
+                $message = 'Akun Anda belum disetujui oleh admin sekolah.';
+            }
+
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            return redirect()->route('login')
-                ->withErrors(['email' => 'Akun Anda belum disetujui oleh admin sekolah.']);
+            $redirect = redirect()->route('login')->withErrors(['email' => $message]);
+
+            if ($reason) {
+                $redirect->with('rejection_reason', $reason);
+            }
+
+            return $redirect;
         }
 
         if (! in_array($user->role, $roles, true)) {
